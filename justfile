@@ -19,8 +19,9 @@ _default:
 
 # run the entry script for the given exercise number
 [group('run')]
-run ex:
-    python3 {{src-dir}}/ex{{ex}}/*.py
+[positional-arguments]
+run ex *args:
+    python3 {{src-dir}}/ex{{ex}}/*.py "${@:2}"
 
 [group('run')]
 run-all:
