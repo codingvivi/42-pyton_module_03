@@ -23,6 +23,12 @@ _default:
 run ex *args:
     python3 {{src-dir}}/ex{{ex}}/*.py "${@:2}"
 
+# run ex2 with presets
+[group('run')]
+run2presets:
+    printf '%s\n' 'hello world' '1.0, 2.5, 3.0' '4,abc,5' '4,5,6' | just run 2
+
+# run all exercises
 [group('run')]
 run-all:
   for f in ex*/*.py; do python3 "$f"; done
