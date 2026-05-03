@@ -28,6 +28,9 @@ run ex *args:
 run2presets:
     printf '%s\n' 'hello world' '1.0, 2.5, 3.0' '4,abc,5' '4,5,6' | just run 2
 
+[group('run')]
+run4presets:
+ just run 4 'sword:1' 'potion:5' 'shield:2' 'armor:3' 'helmet:1' 'sword:2' 'hello' 'key:value'
 # run all exercises
 [group('run')]
 run-all:
