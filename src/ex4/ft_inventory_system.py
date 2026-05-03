@@ -16,7 +16,7 @@ def inventory_from_cli() -> dict[str, int]:
 
     for arg in sys.argv[1:]:
         try:
-            curr: list = arg.split(":")
+            curr: list[str] = arg.split(":")
             if len(curr) == 1:
                 raise ValueError(f"Error - invalid parameter {curr[ITEM]}")
             if len(curr) > 2:
