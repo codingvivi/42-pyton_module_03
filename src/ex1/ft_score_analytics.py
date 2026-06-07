@@ -19,7 +19,10 @@ def main() -> None:
             print(f"Invalid parameter: '{arg}'")
 
     if not scores:
-        print(f"No scores provided. Usage: python3 {sys.argv[0]} <score1> <score2> ...\n")
+        print(
+            f"No scores provided. Usage: python3 {sys.argv[0]} "
+            "<score1> <score2> ...\n"
+        )
         return
 
     print(f"Scores processed: {scores}")

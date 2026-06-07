@@ -8,10 +8,14 @@ def print_header(title: str) -> None:
     print("")
 
 
-def get_distance_3d(pt_1: tuple[float, float, float], pt_2: tuple[float, float, float]) -> float:
+def get_distance_3d(
+    pt_1: tuple[float, float, float], pt_2: tuple[float, float, float]
+) -> float:
 
     distance: float = math.sqrt(
-        (pt_1[X] - pt_2[X]) ** 2 + (pt_1[Y] - pt_2[Y]) ** 2 + (pt_1[Z] - pt_2[Z]) ** 2
+        (pt_1[X] - pt_2[X]) ** 2
+        + (pt_1[Y] - pt_2[Y]) ** 2
+        + (pt_1[Z] - pt_2[Z]) ** 2
     )
 
     return distance

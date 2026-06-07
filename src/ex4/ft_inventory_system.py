@@ -20,7 +20,9 @@ def inventory_from_cli() -> dict[str, int]:
             if len(curr) == 1:
                 raise ValueError(f"Error - invalid parameter {curr[ITEM]}")
             if len(curr) > 2:
-                raise ValueError(f"Error - Too many paramters after {curr[ITEM]}")
+                raise ValueError(
+                    f"Error - Too many paramters after {curr[ITEM]}"
+                )
             if curr[ITEM] in inventory:
                 raise ValueError(f"Error - redundant parameter {curr[ITEM]}")
 

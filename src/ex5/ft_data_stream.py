@@ -1,6 +1,5 @@
-import typing
 import random
-
+import typing
 
 NAME = 0
 ACTION = 1
@@ -27,7 +26,9 @@ class Player:
         return record
 
 
-def gen_event(playerbase: list[Player]) -> typing.Generator[tuple[str, str], None, None]:
+def gen_event(
+    playerbase: list[Player],
+) -> typing.Generator[tuple[str, str], None, None]:
     while True:
         draw: int = random.randrange(len(playerbase))
         player: Player = playerbase[draw]
@@ -36,7 +37,9 @@ def gen_event(playerbase: list[Player]) -> typing.Generator[tuple[str, str], Non
         yield player.do_action(draw)
 
 
-def consume_event(events: list[tuple[str, str]]) -> typing.Generator[tuple[str, str], None, None]:
+def consume_event(
+    events: list[tuple[str, str]],
+) -> typing.Generator[tuple[str, str], None, None]:
     while True:
         yield (events.pop())
 
@@ -64,7 +67,9 @@ def main() -> None:
     events: list[tuple[str, str]] = [next(gen) for _ in range(10)]
     print(f"Built list of {len(events)} events: {events}")
 
-    consume: typing.Generator[tuple[str, str], None, None] = consume_event(events)
+    consume: typing.Generator[tuple[str, str], None, None] = consume_event(
+        events
+    )
 
     # wrap in list to use a copy that doesn't get mutated every iteration
     for _ in list(events):

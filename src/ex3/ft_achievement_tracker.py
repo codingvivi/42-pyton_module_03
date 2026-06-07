@@ -18,20 +18,27 @@ ACHIEVEMENTS = (
 
 
 class Player:
-    def __init__(self, name: str, achievements: set[str] | None = None) -> None:
+    def __init__(
+        self, name: str, achievements: set[str] | None = None
+    ) -> None:
 
         self.name: str = name.title()
 
-        self.achievements: set[str] = achievements if achievements else gen_player_achievements()
+        self.achievements: set[str] = (
+            achievements if achievements else gen_player_achievements()
+        )
 
     def show_gotten(self) -> None:
         print(f"{self.name}: {self.achievements}")
 
     def show_missing(self) -> None:
-        print(f"{self.name} is missing: {set(ACHIEVEMENTS) - self.achievements}")
+        missing: set[str] = set(ACHIEVEMENTS) - self.achievements
+        print(f"{self.name} is missing: {missing}")
 
     def show_unique(self, playerbase_rest: tuple["Player", ...]) -> None:
-        achievements_rest: set[str] = set().union(*(p.achievements for p in playerbase_rest))
+        achievements_rest: set[str] = set().union(
+            *(p.achievements for p in playerbase_rest)
+        )
 
         diff: set[str] = self.achievements - achievements_rest
         print(f"Only {self.name} has: {diff}")
@@ -81,13 +88,19 @@ def main() -> None:
     print("")
 
     all: set[str] = set().union(
-        alice.achievements, bob.achievements, charlie.achievements, dylan.achievements
+        alice.achievements,
+        bob.achievements,
+        charlie.achievements,
+        dylan.achievements,
     )
     print(f"All distrinct achievements: {all}")
     print("")
 
     common: set[str] = set().intersection(
-        alice.achievements, bob.achievements, charlie.achievements, dylan.achievements
+        alice.achievements,
+        bob.achievements,
+        charlie.achievements,
+        dylan.achievements,
     )
     print(f"Common achievements: {common}")
     print("")
