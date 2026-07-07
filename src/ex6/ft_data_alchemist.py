@@ -3,7 +3,6 @@ import random
 
 def print_header(title: str) -> None:
     print(f"=== {title} ===")
-    print("")
 
 
 def main() -> None:
@@ -20,14 +19,12 @@ def main() -> None:
         "kevin",
         "Liam",
     ]
-    print(f"Initial list of players {names_base}")
+    print(f"Initial list of players: {names_base}")
 
     names_title: list[str] = [n.capitalize() for n in names_base]
     print(f"New list with all names capitalized: {names_title}")
 
-    names_original: list[str] = list(
-        set.intersection(set(names_base), set(names_title))
-    )
+    names_original: list[str] = [n for n in names_base if n[0].isupper()]
     print(f"New list of capitalized names only: {names_original}")
     print("")
 

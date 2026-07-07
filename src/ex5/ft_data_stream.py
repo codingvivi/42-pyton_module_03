@@ -40,13 +40,13 @@ def gen_event(
 def consume_event(
     events: list[tuple[str, str]],
 ) -> typing.Generator[tuple[str, str], None, None]:
-    while True:
-        yield (events.pop())
+    while events:
+        draw: int = random.randrange(len(events))
+        yield events.pop(draw)
 
 
 def print_header(title: str) -> None:
     print(f"=== {title} ===")
-    print("")
 
 
 def main() -> None:
@@ -67,15 +67,9 @@ def main() -> None:
     events: list[tuple[str, str]] = [next(gen) for _ in range(10)]
     print(f"Built list of {len(events)} events: {events}")
 
-    consume: typing.Generator[tuple[str, str], None, None] = consume_event(
-        events
-    )
-
-    # wrap in list to use a copy that doesn't get mutated every iteration
-    for _ in list(events):
-        event = next(consume)
-        print(f"Got event from list {event}")
-        print(f"Remains in list:{events}")
+    for event in consume_event(events):
+        print(f"Got event from list: {event}")
+        print(f"Remains in list: {events}")
 
 
 if __name__ == "__main__":

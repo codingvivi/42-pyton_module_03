@@ -3,7 +3,6 @@ import sys
 
 def print_header(title: str) -> None:
     print(f"=== {title} ===")
-    print("")
 
 
 def main() -> None:
@@ -16,11 +15,12 @@ def main() -> None:
     if not args:
         print("No arguments provided!")
     else:
+        print(f"Arguments received: {len(args)}")
         for arg in args:
             print(f"Argument {i}: {arg}")
             i += 1
 
-    print(f"Total arguments {len(sys.argv)}")
+    print(f"Total arguments: {len(sys.argv)}")
 
 
 if __name__ == "__main__":

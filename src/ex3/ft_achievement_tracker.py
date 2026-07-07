@@ -11,7 +11,7 @@ ACHIEVEMENTS = (
     "Unstoppable",
     "First Steps",
     "Collector Supreme",
-    " Untouchable",
+    "Untouchable",
     "Sharp Mind",
     "Boss Slayer",
 )
@@ -21,7 +21,6 @@ class Player:
     def __init__(
         self, name: str, achievements: set[str] | None = None
     ) -> None:
-
         self.name: str = name.title()
 
         self.achievements: set[str] = (
@@ -46,7 +45,6 @@ class Player:
 
 def print_header(title: str) -> None:
     print(f"=== {title} ===")
-    print("")
 
 
 def gen_random_weighed_nums(amount: int) -> list[int]:
@@ -66,6 +64,10 @@ def gen_player_achievements() -> set[str]:
 
 def playerbase_show(playerbase: tuple[Player, ...], show_version: str) -> None:
     for p in playerbase:
+        # classes are just mapping proxies
+        # (read-ony dicts).
+        # getattr() does the same thing,
+        # but alas, the pdf guidelines,
         method = p.__class__.__dict__[f"show_{show_version}"]
         if show_version == "unique":
             rest = tuple(other for other in playerbase if other is not p)
@@ -93,11 +95,10 @@ def main() -> None:
         charlie.achievements,
         dylan.achievements,
     )
-    print(f"All distrinct achievements: {all}")
+    print(f"All distinct achievements: {all}")
     print("")
 
-    common: set[str] = set().intersection(
-        alice.achievements,
+    common: set[str] = alice.achievements.intersection(
         bob.achievements,
         charlie.achievements,
         dylan.achievements,

@@ -5,7 +5,6 @@ X, Y, Z = 0, 1, 2
 
 def print_header(title: str) -> None:
     print(f"=== {title} ===")
-    print("")
 
 
 def get_distance_3d(

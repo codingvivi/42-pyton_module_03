@@ -3,7 +3,6 @@ import sys
 
 def print_header(title: str) -> None:
     print(f"=== {title} ===")
-    print("")
 
 
 def main() -> None:
@@ -21,7 +20,7 @@ def main() -> None:
     if not scores:
         print(
             f"No scores provided. Usage: python3 {sys.argv[0]} "
-            "<score1> <score2> ...\n"
+            "<score1> <score2> ..."
         )
         return
 
@@ -43,7 +42,7 @@ def main() -> None:
     print(f"Low score: {lo}")
 
     score_range: int = hi - lo
-    print(f"Score range: {score_range}\n")
+    print(f"Score range: {score_range}")
 
 
 if __name__ == "__main__":

@@ -3,7 +3,6 @@ import sys
 
 def print_header(title: str) -> None:
     print(f"=== {title} ===")
-    print("")
 
 
 ITEM = 0
@@ -18,13 +17,13 @@ def inventory_from_cli() -> dict[str, int]:
         try:
             curr: list[str] = arg.split(":")
             if len(curr) == 1:
-                raise ValueError(f"Error - invalid parameter {curr[ITEM]}")
+                raise ValueError(f"Error - invalid parameter '{curr[ITEM]}'")
             if len(curr) > 2:
-                raise ValueError(
-                    f"Error - Too many paramters after {curr[ITEM]}"
-                )
+                raise ValueError(f"Error - invalid parameter '{arg}'")
             if curr[ITEM] in inventory:
-                raise ValueError(f"Error - redundant parameter {curr[ITEM]}")
+                raise ValueError(
+                    f"Redundant item '{curr[ITEM]}' - discarding"
+                )
 
             try:
                 num: int = int(curr[NUM])
@@ -32,7 +31,7 @@ def inventory_from_cli() -> dict[str, int]:
                     raise ValueError("Item number can't be smaller than 1!")
                 inventory[curr[ITEM]] = num
             except ValueError as e:
-                print(f"Quantity error for {curr[ITEM]}: {e}")
+                print(f"Quantity error for '{curr[ITEM]}': {e}")
 
         except Exception as e:
             print(e)
