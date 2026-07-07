@@ -47,18 +47,14 @@ def print_header(title: str) -> None:
     print(f"=== {title} ===")
 
 
-def gen_random_weighed_nums(amount: int) -> list[int]:
-    n = len(ACHIEVEMENTS)
-    candidates: tuple[int, ...] = tuple(range(n + 1))  # 0..n inclusive
-
-    weights: list[float] = [1] * (n + 1)
-    weights[0] = 0.1  # 0 is unlikely
-
-    return random.choices(candidates, weights=weights, k=amount)
+# each player draws between MIN_PICK and MAX_PICK of the achievements
+# band is tuned so sets are all likely non-empty in a given run
+MIN_PICK = 6
+MAX_PICK = 10
 
 
 def gen_player_achievements() -> set[str]:
-    num: int = gen_random_weighed_nums(1)[0]
+    num: int = random.randint(MIN_PICK, MAX_PICK)
     return set(random.sample(ACHIEVEMENTS, num))
 
 
